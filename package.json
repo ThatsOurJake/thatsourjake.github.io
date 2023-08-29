@@ -1,0 +1,15 @@
+{
+  "name": "thatsourjake.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ThatsOurJake/thatsourjake.github.io.git",
+  "author": "Jake King <jake.king@sky.uk>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./generator/builder.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "showdown": "^2.1.0"
+  }
+}
