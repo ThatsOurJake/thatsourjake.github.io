@@ -1,16 +1,11 @@
 const path = require('path');
 const fs = require('fs');
 const showdown = require('showdown');
+const ejs = require('ejs');
 
 const WORDS_PER_MIN = 200;
 
 (async() => {
-  const converter = new showdown.Converter({
-    emoji: true,
-    ghMentions: true,
-    metadata: true,
-  });
-
   const buildDir = path.join(process.cwd(), 'build');
   const blogDir = path.join(process.cwd(), 'blog');
   /** @type {{ title: string, datePublished: number, readingTime: { value: number } }[]} */
@@ -62,6 +57,14 @@ const WORDS_PER_MIN = 200;
     console.log(`  Found [${markdownFiles.length}] markdown files`);
 
     for (let j = 0; j < markdownFiles.length; j++) {
+      const converter = new showdown.Converter({
+        emoji: true,
+        ghMentions: true,
+        metadata: true,
+        headerLevelStart: 2,
+        parseImgDimensions: true,
+      });
+
       const mdFileName = markdownFiles[j];
       const mdFileLocation = path.join(dirPath, mdFileName);
       const rawText = fs.readFileSync(mdFileLocation).toString('utf-8');
@@ -74,10 +77,56 @@ const WORDS_PER_MIN = 200;
       
       console.log(`  Generating page for ${mdFileName} | Read time: ${readTime} minute(s)`);
 
-      // generate article page using template
+      const { title = undefined, datePublished = undefined, lastEdited = undefined } = converter.getMetadata();
+
+      if (!title) {
+        console.warn(`  ⚠️  Article does not contain a title - Skipping`);
+        continue;
+      }
+
+      if (!datePublished) {
+        console.warn(`  ⚠️  Article does not contain a datePublished - Skipping`);
+        continue;
+      }
+
+      const metadata = {
+        title,
+        datePublished,
+        lastEdited,
+        readTime,
+      };
+
+      // generate article from ejs
+      try {
+        const outputArticle = await new Promise((resolve, reject) => {
+          ejs.renderFile(path.join(__dirname, 'templates', 'article.ejs'), {
+            metadata,
+            html
+          }, (err, str) => {
+            if (err) {
+              return reject(err);
+            }
+  
+            return resolve(str)
+          });
+        });
+
+        fs.writeFileSync(path.join(outputDir, `${mdFileName.replace('.md', '')}.html`), outputArticle);
+
+        console.log(`  ✨ Generated`);
+      } catch (error) {
+        console.error(` Failure: ${error.message}`);
+        console.error(error.stack);
+      }
     }
 
-    // copy all pictures other than md
+    // copy all assets other than md
+    const assets = fs.readdirSync(dirPath).filter(p => !p.endsWith('.md') && fs.lstatSync(path.join(dirPath,  p)).isFile());
+
+    for (let j = 0; j < assets.length; j++) {
+      const asset = assets[j];
+      fs.copyFileSync(path.join(dirPath, asset), path.join(outputDir, asset));
+    }
   }
 
 
@@ -87,4 +136,6 @@ const WORDS_PER_MIN = 200;
   // generate articles page
 
   // output to docs folder
+
+  console.log(`🎇 Done - You can now run 'npm run publish'`);
 })();

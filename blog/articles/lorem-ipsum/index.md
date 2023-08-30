@@ -1,7 +1,6 @@
 ---
 title: Lorem Ipsum
 datePublished: 2023-08-27T20:00:00.000Z
-lastEdited: 2023-08-27T20:00:00.000Z
 ---
 
 # Hello World
@@ -19,4 +18,4 @@ Ahoy holystone Arr hands fathom Pirate Round spyglass parrel rigging keelhaul re
 ```
 
 ## Hello World 4
-![Picture of cake](./cake.png)
+![Picture of cake](./cake.png =50%x*)

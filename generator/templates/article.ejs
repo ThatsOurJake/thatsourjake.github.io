@@ -3,6 +3,13 @@
     <%- include('meta') %>
   </head>
   <body>
-    
+    <div class="u-center u-shadow-inset">
+      <article class="w-70p">
+        <p class="headline-4 mb-0"><%= metadata.title %></p>
+        <p class="text-sm mt-0"> Date published: <%= metadata.datePublished %> | Estimated Read Time: ~<%= metadata.readTime %> minute(s)</p>
+        <%- html %>
+      </article>
+    </div>
+    <%- include('footer') %>
   </body>
 </html>
