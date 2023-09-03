@@ -3,13 +3,20 @@
     <%- include('meta') %>
   </head>
   <body>
-    <div class="u-center u-shadow-inset">
-      <article class="w-70p">
+    <%- include('header') %>
+    <div class="u-center u-shadow-inset bg-white">
+      <article class="w-70p min-h-screen">
         <p class="headline-4 mb-0"><%= metadata.title %></p>
-        <p class="text-sm mt-0"> Date published: <%= metadata.datePublished %> | Estimated Read Time: ~<%= metadata.readTime %> minute(s)</p>
-        <%- html %>
+        <p class="text-sm m-0">Date published: <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date(metadata.datePublished )) %> | Estimated Read Time: ~<%= metadata.readTime %> minute(s)</p>
+        <% if (metadata.lastEdited) { %>
+          <p class="text-xs m-0">Edited on: <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date(metadata.lastEdited )) %></p>
+        <% } %>
+        <div class="mt-2">
+          <%- html %>
+        </div>
       </article>
     </div>
+    <%- include('cookie') %>
     <%- include('footer') %>
   </body>
 </html>

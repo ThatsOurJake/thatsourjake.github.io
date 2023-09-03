@@ -1,6 +1,8 @@
 ---
 title: Lorem Ipsum
 datePublished: 2023-08-27T20:00:00.000Z
+favourite: true
+lastEdited: 2023-09-03T20:00:00.000Z
 ---
 
 # Hello World
@@ -17,5 +19,9 @@ Prow rutters strike colors fire ship keelhaul main sheet dead men tell no tales 
 Ahoy holystone Arr hands fathom Pirate Round spyglass parrel rigging keelhaul reef trysail deadlights Brethren of the Coast long clothes maroon lee schooner Sail ho belaying pin hornswaggle aye aft killick port list Corsair spanker yard ye bilge rat cog carouser bilge water handsomely Admiral of the Black clipper galleon wench Letter of Marque. Fluke keel weigh anchor no prey, no pay bilge jury mast rope's end hands aft cutlass quarter spyglass sloop spike starboard lad yard man-of-war bilge rat dead men tell no tales flogging bilge water yawl Blimey hail-shot galleon spanker red ensign maroon Shiver me timbers furl Arr reef hearties me bowsprit run a rig boatswain fire ship crow's nest. Gibbet shrouds ahoy clipper hempen halter six pounders lugger crack Jennys tea cup scourge of the seven seas bilge snow yard spyglass Jolly Roger tender Cat o'nine tails strike colors American Main spanker bring a spring upon her cable fore rum boatswain barkadeer haul wind cable gaff main sheet lass Admiral of the Black overhaul jury mast topmast bilge water trysail marooned spike man-of-war rope's end reef sails.
 ```
 
+<br/>
+
 ## Hello World 4
-![Picture of cake](./cake.png =50%x*)
+![Picture of cake](./cake.png =25%x*)
+
+Read Part two: [Part 2](./part-2)

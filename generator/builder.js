@@ -5,10 +5,23 @@ const ejs = require('ejs');
 
 const WORDS_PER_MIN = 200;
 
+const renderTemplate = (template, metadata, extraParams = {}) => new Promise((resolve, reject) => {
+  ejs.renderFile(path.join(__dirname, 'templates', template), {
+    metadata,
+    ...extraParams
+  }, (err, str) => {
+    if (err) {
+      return reject(err);
+    }
+
+    return resolve(str)
+  });
+});
+
 (async() => {
   const buildDir = path.join(process.cwd(), 'build');
   const blogDir = path.join(process.cwd(), 'blog');
-  /** @type {{ title: string, datePublished: number, readingTime: { value: number } }[]} */
+  /** @type {{ title: string, datePublished: number, url: string, readingTime: { value: number }, favourite: boolean }[]} */
   const blogPosts = [];
 
   const docsDir = path.join(buildDir, 'docs');
@@ -44,7 +57,7 @@ const WORDS_PER_MIN = 200;
       continue;
     }
 
-    const outputDir = path.join(docsDir, dir);
+    const outputDir = path.join(docsDir, 'articles', dir);
     // create folder under docs names the same as parent folder
     fs.mkdirSync(outputDir, {
       recursive: true
@@ -77,7 +90,7 @@ const WORDS_PER_MIN = 200;
       
       console.log(`  Generating page for ${mdFileName} | Read time: ${readTime} minute(s)`);
 
-      const { title = undefined, datePublished = undefined, lastEdited = undefined } = converter.getMetadata();
+      const { title = undefined, datePublished = undefined, lastEdited = undefined, favourite = false } = converter.getMetadata();
 
       if (!title) {
         console.warn(`  ⚠️  Article does not contain a title - Skipping`);
@@ -96,23 +109,23 @@ const WORDS_PER_MIN = 200;
         readTime,
       };
 
+      const urlSlug = mdFileName.replace('.md', '');
+      const url = urlSlug === 'index' ? `/articles/${dir}/` : `/articles/${dir}/${urlSlug}`;
+
+      blogPosts.push({
+        url,
+        title,
+        datePublished: new Date(datePublished).valueOf(),
+        readingTime: {
+          value: readTime,
+        },
+        favourite,
+      });
+
       // generate article from ejs
       try {
-        const outputArticle = await new Promise((resolve, reject) => {
-          ejs.renderFile(path.join(__dirname, 'templates', 'article.ejs'), {
-            metadata,
-            html
-          }, (err, str) => {
-            if (err) {
-              return reject(err);
-            }
-  
-            return resolve(str)
-          });
-        });
-
-        fs.writeFileSync(path.join(outputDir, `${mdFileName.replace('.md', '')}.html`), outputArticle);
-
+        const outputArticle = await renderTemplate('article.ejs', metadata, { html });
+        fs.writeFileSync(path.join(outputDir, `${urlSlug}.html`), outputArticle);
         console.log(`  ✨ Generated`);
       } catch (error) {
         console.error(` Failure: ${error.message}`);
@@ -129,13 +142,23 @@ const WORDS_PER_MIN = 200;
     }
   }
 
-
   // generate homepage
-    // add latest 3 articles
+  const homepage = await renderTemplate('home.ejs', { title: 'Home' }, {
+    blogPosts: blogPosts.sort((a, b) => b.datePublished - a.datePublished).slice(0, 3),
+    favouritePosts: blogPosts.filter(x => x.favourite).sort((a, b) => b.datePublished - a.datePublished),
+  });
+  fs.writeFileSync(path.join(docsDir, 'index.html'), homepage);
+  console.log(`✨ Homepage Generated`);
+
+  // generate privacy page
+  const privacy = await renderTemplate('privacy.ejs', { title: 'Privacy Policy' });
+  fs.writeFileSync(path.join(docsDir, 'privacy.html'), privacy);
+  console.log(`✨ Privacy Policy Generated`);
 
   // generate articles page
-
-  // output to docs folder
+  const articlesPage = await renderTemplate('articles.ejs', { title: 'All Articles' }, { blogPosts });
+  fs.writeFileSync(path.join(docsDir, 'articles', 'index.html'), articlesPage);
+  console.log(`✨ Articles page Generated`);
 
   console.log(`🎇 Done - You can now run 'npm run publish'`);
 })();
