@@ -56,22 +56,6 @@ const runScript = (script) => new Promise((resolve, reject) => {
 
   console.log(`✅ Branch is clean`);
 
-  // checkout to branch
-  try {
-    await git.checkout([BRANCH_NAME]);
-  } catch (err) {
-    await git.checkoutLocalBranch(BRANCH_NAME);
-  }
-
-  try {
-    await git.pull('origin');
-  } catch (error) {
-    console.warn(`  Branch doesn't exist on remote`);
-  }
-
-  console.log('Switched to "blog" branch');
-  console.log('');
-
   await runScript(path.join(__dirname, 'builder.js'));
 
   console.log('');
@@ -89,6 +73,11 @@ const runScript = (script) => new Promise((resolve, reject) => {
     recursive: true,
   });
 
+  console.log(`Copied to ${outputDocs}`);
+
+  await git.add('docs/*');
+  await git.stash();
+
   console.log('Removing all files and folders other than docs');
   const all = fs.readdirSync(process.cwd());
   const gitIgnore = fs.readFileSync(path.resolve('.gitignore')).toString().split('\n');
@@ -96,7 +85,7 @@ const runScript = (script) => new Promise((resolve, reject) => {
   for (let i = 0; i < all.length; i++) {
     const f = all[i];
 
-    if (f === 'docs' || gitIgnore.includes(f)) {
+    if (f === 'docs' || gitIgnore.includes(f) || '.git') {
       return;
     }
 
@@ -106,7 +95,23 @@ const runScript = (script) => new Promise((resolve, reject) => {
     });
   }
 
-  console.log(`Copied to ${outputDocs}`);
+   // checkout to branch
+   try {
+    await git.checkout([BRANCH_NAME]);
+  } catch (err) {
+    await git.checkoutLocalBranch(BRANCH_NAME);
+  }
+
+  try {
+    await git.pull('origin');
+  } catch (error) {
+    console.warn(`  Branch doesn't exist on remote`);
+  }
+
+  console.log('Switched to "blog" branch');
+  console.log('');
+
+  await git.stash(['apply', '0']);
 
   await git.add('docs/*');
   await git.commit(`Docs deployment: ${new Date().toISOString()}`);
