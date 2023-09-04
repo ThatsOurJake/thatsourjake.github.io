@@ -104,7 +104,7 @@ const runScript = (script) => new Promise((resolve, reject) => {
   }
 
   try {
-    await git.pull('origin');
+    await git.pull();
   } catch (error) {
     console.warn(`  Branch doesn't exist on remote`);
   }
