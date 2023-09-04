@@ -2,11 +2,12 @@ const path = require('path');
 const fs = require('fs');
 const showdown = require('showdown');
 const ejs = require('ejs');
+const sass = require('sass');
 
 const WORDS_PER_MIN = 200;
 
-const renderTemplate = (template, metadata, extraParams = {}) => new Promise((resolve, reject) => {
-  ejs.renderFile(path.join(__dirname, 'templates', template), {
+const renderPage = (template, metadata, extraParams = {}) => new Promise((resolve, reject) => {
+  ejs.renderFile(path.join(__dirname, 'templates', 'pages', template), {
     metadata,
     ...extraParams
   }, (err, str) => {
@@ -19,6 +20,8 @@ const renderTemplate = (template, metadata, extraParams = {}) => new Promise((re
 });
 
 (async() => {
+  const { minify } = await import('minify');
+
   const buildDir = path.join(process.cwd(), 'build');
   const blogDir = path.join(process.cwd(), 'blog');
   /** @type {{ title: string, datePublished: number, url: string, readingTime: { value: number }, favourite: boolean }[]} */
@@ -124,7 +127,7 @@ const renderTemplate = (template, metadata, extraParams = {}) => new Promise((re
 
       // generate article from ejs
       try {
-        const outputArticle = await renderTemplate('article.ejs', metadata, { html });
+        const outputArticle = await renderPage('article.ejs', metadata, { html });
         fs.writeFileSync(path.join(outputDir, `${urlSlug}.html`), outputArticle);
         console.log(`  ✨ Generated`);
       } catch (error) {
@@ -143,7 +146,7 @@ const renderTemplate = (template, metadata, extraParams = {}) => new Promise((re
   }
 
   // generate homepage
-  const homepage = await renderTemplate('home.ejs', { title: 'Home' }, {
+  const homepage = await renderPage('home.ejs', { title: 'Home' }, {
     blogPosts: blogPosts.sort((a, b) => b.datePublished - a.datePublished).slice(0, 3),
     favouritePosts: blogPosts.filter(x => x.favourite).sort((a, b) => b.datePublished - a.datePublished),
   });
@@ -151,14 +154,25 @@ const renderTemplate = (template, metadata, extraParams = {}) => new Promise((re
   console.log(`✨ Homepage Generated`);
 
   // generate privacy page
-  const privacy = await renderTemplate('privacy.ejs', { title: 'Privacy Policy' });
+  const privacy = await renderPage('privacy.ejs', { title: 'Privacy Policy' });
   fs.writeFileSync(path.join(docsDir, 'privacy.html'), privacy);
   console.log(`✨ Privacy Policy Generated`);
 
   // generate articles page
-  const articlesPage = await renderTemplate('articles.ejs', { title: 'All Articles' }, { blogPosts });
+  const articlesPage = await renderPage('articles.ejs', { title: 'All Articles' }, { blogPosts });
   fs.writeFileSync(path.join(docsDir, 'articles', 'index.html'), articlesPage);
   console.log(`✨ Articles page Generated`);
 
+  // build styles
+  console.log('');
+  console.log('🛠  Compiling SASS 💅🏼');
+  const compiled = sass.compile(path.join(__dirname, 'styles', 'style.scss'), {
+    loadPaths: [path.resolve('node_modules')],
+  });
+  console.log('   Minifying 📏');
+  const minifiedCss = await minify.css(compiled.css);
+  fs.writeFileSync(path.join(docsDir, 'style.css'), minifiedCss);
+
+  console.log('');
   console.log(`🎇 Done - You can now run 'npm run publish'`);
 })();

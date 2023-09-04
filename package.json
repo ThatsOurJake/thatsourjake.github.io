@@ -9,7 +9,10 @@
     "build": "node ./generator/builder.js"
   },
   "dependencies": {
+    "cirrus-ui": "^0.7.1",
     "ejs": "^3.1.9",
+    "minify": "^10.5.2",
+    "sass": "^1.66.1",
     "showdown": "^2.1.0"
   }
 }
