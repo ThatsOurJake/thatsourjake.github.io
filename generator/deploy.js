@@ -49,16 +49,16 @@ const runScript = (script) => new Promise((resolve, reject) => {
 
   // Check if the current git is clean
   const currentStatus = await git.status();
-  // if (!currentStatus.isClean()) {
-  //   console.log(`❌ Current Branch is not clean - aborting!`)
-  //   return;
-  // }
+  if (!currentStatus.isClean()) {
+    console.log(`❌ Current Branch is not clean - aborting!`)
+    return;
+  }
 
   console.log(`✅ Branch is clean`);
 
   // checkout to branch
   try {
-    await git.checkout(BRANCH_NAME);
+    await git.checkout([BRANCH_NAME]);
   } catch (err) {
     await git.checkoutLocalBranch(BRANCH_NAME);
   }
@@ -88,6 +88,23 @@ const runScript = (script) => new Promise((resolve, reject) => {
     force: true,
     recursive: true,
   });
+
+  console.log('Removing all files and folders other than docs');
+  const all = fs.readdirSync(process.cwd());
+  const gitIgnore = fs.readFileSync(path.resolve('.gitignore')).toString().split('\n');
+
+  for (let i = 0; i < all.length; i++) {
+    const f = all[i];
+
+    if (f === 'docs' || gitIgnore.includes(f)) {
+      return;
+    }
+
+    fs.rmSync(f, {
+      recursive: true,
+      force: true,
+    });
+  }
 
   console.log(`Copied to ${outputDocs}`);
 
