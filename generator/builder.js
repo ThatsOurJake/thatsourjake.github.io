@@ -174,5 +174,5 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
   fs.writeFileSync(path.join(docsDir, 'style.css'), minifiedCss);
 
   console.log('');
-  console.log(`🎇 Done - You can now run 'npm run publish'`);
+  console.log(`🎇 Build Complete`);
 })();
