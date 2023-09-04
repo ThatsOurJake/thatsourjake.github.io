@@ -22,6 +22,6 @@ Ahoy holystone Arr hands fathom Pirate Round spyglass parrel rigging keelhaul re
 <br/>
 
 ## Hello World 4
-![Picture of cake](./cake.png =25%x*)
+![Picture of cake](./cake.webp =25%x*)
 
 Read Part two: [Part 2](./part-2)
