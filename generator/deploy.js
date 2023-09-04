@@ -126,5 +126,7 @@ const runScript = (script) => new Promise((resolve, reject) => {
     recursive: true,
   });
 
+  await git.checkout('main');
+
   console.log(`✨ Deployed to github`);
 })();
