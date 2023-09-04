@@ -76,7 +76,8 @@ const runScript = (script) => new Promise((resolve, reject) => {
   console.log(`Copied to ${outputDocs}`);
 
   await git.add('docs/*');
-  await git.stash();
+  const stashed = await git.stash();
+  console.log(stashed);
 
   console.log('Removing all files and folders other than docs');
   const all = fs.readdirSync(process.cwd());
@@ -86,7 +87,7 @@ const runScript = (script) => new Promise((resolve, reject) => {
     const f = all[i];
 
     if (f === 'docs' || gitIgnore.includes(f) || '.git') {
-      return;
+      continue;
     }
 
     fs.rmSync(f, {
