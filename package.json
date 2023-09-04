@@ -1,0 +1,20 @@
+{
+  "name": "thatsourjake.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ThatsOurJake/thatsourjake.github.io.git",
+  "author": "Jake King <jake.king@sky.uk>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./generator/builder.js",
+    "deploy": "node ./generator/deploy.js"
+  },
+  "dependencies": {
+    "cirrus-ui": "^0.7.1",
+    "ejs": "^3.1.9",
+    "minify": "^10.5.2",
+    "sass": "^1.66.1",
+    "showdown": "^2.1.0",
+    "simple-git": "^3.19.1"
+  }
+}
