@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-<title>Why I wrote a blog | thatsourjake.blog</title>
+<title>How I wrote a blog | thatsourjake.blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,27 +32,38 @@
 
     <div class="u-center u-shadow-inset bg-white">
       <article class="w-70p min-h-screen">
-        <p class="headline-4 mb-0">Why I wrote a blog</p>
+        <p class="headline-4 mb-0">How I wrote a blog</p>
         <p class="text-sm m-0">Date published: 05 September 2023 | Estimated Read Time: ~2 minute(s)</p>
         
-<<<<<<< Updated upstream
-=======
-          <p class="text-xs m-0">Edited on: 05 September 2023</p>
-        
->>>>>>> Stashed changes
         <div class="mt-2">
-          <p>First of all introductions, 👋🏻 I am Jake, a software developer/engineer, I would say full stack but with a backend heavy background. I like 🕹 (video games), 👀📺 (watching tv) and most importantly 💻 (programming).</p>
-<p>I often work on weird intrusive project ideas, these might never lead to a final finished product or they lead to something I use regularly and then iterate on. So to document my processes, crazy ideas or general thoughts I have created this blog. Some funny projects I've worked on in the past:</p>
+          <p>What better first main blog post than explaining how the site that hosts my blog was made. <strong>tldr:</strong> <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a>.</p>
+<p>First i'll preface this with some caveats</p>
 <ul>
-<li>Bin API (Lets me know which bin needs taking out)</li>
-<li>Food management service (To keep track of whats in my cupboards)</li>
-<li>A micro app to lets me know when an piece of Ikea furniture was back in stock</li>
+<li>This framework has been made specifically to my workflow</li>
+<li>It's a major WIP and will evolve over time</li>
+<li>I didn't want to use a prebuilt framework like Gatsby as I wanted this site to feel more personal</li>
 </ul>
-<p>What to expect? Well I am not 100% sure yet, it will however been an interesting journey I will definitely write posts about projects I've worked on, there might be posts about other hobbies I have but all in all lets hope it's an interesting one. No one will read these posts anyway but they're here for me to reflect and for the search engines to consume.</p>
-<<<<<<< Updated upstream
-=======
-<p>How I built this blog can be found <a href="../how-i-wrote-a-blog">here</a></p>
->>>>>>> Stashed changes
+<p>Now that's out the way the tech stack, it's a simple tech stack for hosting - <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain routed via cloudflare. As for the what I call the <code>builder</code>, this script handles the generation of the site, it's written in Javascript and uses the <a href="https://ejs.co/">EJS</a> templating engine. The script will a set of basic steps</p>
+<ul>
+<li>Find all markdown files within a specified directory</li>
+<li>Parse these using <a href="https://www.npmjs.com/package/showdown">showdown</a></li>
+<li>Calculate Reading time</li>
+<li>Generate full html pages using EJS and prebuilt templates</li>
+<li>Save html files to output directory</li>
+<li>Copy any other assets like images</li>
+<li>Generate the homepage, articles page, privacy policy</li>
+<li>Compile SASS</li>
+<li>Done!</li>
+</ul>
+<p>There are some other missing steps like validation but that is the general inner workings. The deployment script is still very much a work in progress and has already caused many issues, but the idea behind it:</p>
+<ul>
+<li>Build the site</li>
+<li>Checkout to the <code>blog</code> branch</li>
+<li>Commit the docs</li>
+<li>Push</li>
+<li>GitHub actions does the rest</li>
+</ul>
+<p>Some other honourable mentions are I'm using <a href="https://www.npmjs.com/package/pm2">PM2</a>, <a href="https://www.npmjs.com/package/nodemon">nodemon</a> and <a href="https://www.npmjs.com/package/http-server">http-server</a> to make it easier to locally write and view the articles. If you're curious then the <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a> is open on my GitHub.</p>
         </div>
       </article>
     </div>
