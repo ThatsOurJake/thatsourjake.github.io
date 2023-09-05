@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "dev-server",
+      "script": "npm",
+      "args": "run dev-server"
+    },
+    {
+      "name": "dev-build",
+      "script": "npm",
+      "args": "run dev-build"
+    }
+  ]
+}
