@@ -67,7 +67,9 @@ const runScript = (script) => new Promise((resolve, reject) => {
   console.log('Switched to "blog" branch');
   console.log('');
 
-  await git.pull();
+  try {
+    await git.pull(['origin', BRANCH_NAME]);
+  } catch(_) {}
 
   const outputDocs = path.join(process.cwd(), 'docs');
 
