@@ -58,16 +58,24 @@ const runScript = (script) => new Promise((resolve, reject) => {
 
   await runScript(path.join(__dirname, 'builder.js'));
 
+  try {
+    await git.checkout([BRANCH_NAME]);
+  } catch (err) {
+    await git.checkoutLocalBranch(BRANCH_NAME);
+  }
+
+  console.log('Switched to "blog" branch');
   console.log('');
-  // add docs folder
-  console.log(`Copying docs from build`)
-  const tempDir = path.resolve('temp');
-  fs.rmSync(tempDir, {
-    recursive: true,
-    force: true,
-  });
 
   const outputDocs = path.join(process.cwd(), 'docs');
+
+  fs.rmSync(outputDocs, {
+    force: true,
+    recursive: true,
+  });
+
+  console.log('Removing old docs folder');
+
   fs.cpSync(path.resolve('build', 'docs'), outputDocs, {
     force: true,
     recursive: true,
@@ -76,49 +84,15 @@ const runScript = (script) => new Promise((resolve, reject) => {
   console.log(`Copied to ${outputDocs}`);
 
   await git.add('docs/*');
-  const stashed = await git.stash();
-  console.log(stashed);
-
-  console.log('Removing all files and folders other than docs');
-  const all = fs.readdirSync(process.cwd());
-  const gitIgnore = fs.readFileSync(path.resolve('.gitignore')).toString().split('\n');
-
-  for (let i = 0; i < all.length; i++) {
-    const f = all[i];
-
-    if (f === 'docs' || gitIgnore.includes(f) || '.git') {
-      continue;
-    }
-
-    fs.rmSync(f, {
-      recursive: true,
-      force: true,
-    });
-  }
-
-   // checkout to branch
-   try {
-    await git.checkout([BRANCH_NAME]);
-  } catch (err) {
-    await git.checkoutLocalBranch(BRANCH_NAME);
-  }
-
-  try {
-    await git.pull('origin', BRANCH_NAME);
-  } catch (error) {
-    console.warn(`  Branch doesn't exist on remote`);
-  }
-
-  console.log('Switched to "blog" branch');
-  console.log('');
-
-  await git.stash(['apply', '0']);
-
-  await git.add('docs/*');
   await git.commit(`Docs deployment: ${new Date().toISOString()}`);
 
-  // git push
-  await git.push();
+  console.log('New blog committed');
+
+  try {
+    await git.push();
+  } catch(_) {
+    await git.push(['--set-upstream', 'origin', BRANCH_NAME]);
+  }
 
   console.log('Cleaning up');
   fs.rmSync(outputDocs, {
