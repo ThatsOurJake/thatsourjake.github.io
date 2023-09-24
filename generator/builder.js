@@ -22,8 +22,9 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
 (async() => {
   const { minify } = await import('minify');
 
-  const buildDir = path.join(process.cwd(), 'build');
-  const blogDir = path.join(process.cwd(), 'blog');
+  const cwd = process.cwd();
+  const buildDir = path.join(cwd, 'build');
+  const blogDir = path.join(cwd, 'blog');
   /** @type {{ title: string, datePublished: number, url: string, readingTime: { value: number }, favourite: boolean }[]} */
   const blogPosts = [];
 
@@ -172,6 +173,12 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
   console.log('   Minifying 📏');
   const minifiedCss = await minify.css(compiled.css);
   fs.writeFileSync(path.join(docsDir, 'style.css'), minifiedCss);
+
+  if (fs.existsSync(path.join(cwd, 'CNAME'))) {
+    console.log('');
+    console.log('Copying CNAME');
+    fs.cpSync(path.join(cwd, 'CNAME'), path.join(docsDir, 'CNAME'));
+  }
 
   console.log('');
   console.log(`🎇 Build Complete`);
