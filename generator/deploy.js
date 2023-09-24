@@ -37,6 +37,7 @@ const runScript = (script) => new Promise((resolve, reject) => {
 
 (async() => {
   console.log(`🐳 Deploying Blog`);
+  const cwd = process.cwd();
 
   const git = simpleGit();
 
@@ -57,22 +58,20 @@ const runScript = (script) => new Promise((resolve, reject) => {
   console.log(`✅ Branch is clean`);
 
   await runScript(path.join(__dirname, 'builder.js'));
+  console.log('')
 
   try {
-    await git.checkout([BRANCH_NAME]);
-  } catch (err) {
-    await git.checkoutLocalBranch(BRANCH_NAME);
+    await git.checkout([BRANCH_NAME, '--']);
+  } catch (_) {
+    console.error(`Create an empty branch called ${BRANCH_NAME}`);
+    return;
   }
 
   console.log('Switched to "blog" branch');
   console.log('');
 
-  try {
-    await git.pull(['origin', BRANCH_NAME]);
-  } catch(_) {}
-
   console.log('Removing all files and folders other than docs');
-  const all = fs.readdirSync(process.cwd());
+  const all = fs.readdirSync(cwd);
   const gitIgnore = fs.readFileSync(path.resolve('.gitignore')).toString().split('\n');
 
   for (let i = 0; i < all.length; i++) {
@@ -82,13 +81,13 @@ const runScript = (script) => new Promise((resolve, reject) => {
       continue;
     }
 
-    fs.rmSync(f, {
+    fs.rmSync(path.join(cwd, f), {
       recursive: true,
       force: true,
     });
   }
 
-  const outputDocs = path.join(process.cwd(), 'docs');
+  const outputDocs = path.join(cwd, 'docs');
 
   fs.rmSync(outputDocs, {
     force: true,
@@ -109,12 +108,8 @@ const runScript = (script) => new Promise((resolve, reject) => {
 
   console.log('New blog committed');
 
-  try {
-    await git.push();
-  } catch(_) {
-    await git.push(['--set-upstream', 'origin', BRANCH_NAME]);
-  }
-
+  await git.push();
+  
   console.log('Cleaning up');
   fs.rmSync(outputDocs, {
     force: true,
