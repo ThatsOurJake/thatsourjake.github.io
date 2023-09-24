@@ -71,6 +71,23 @@ const runScript = (script) => new Promise((resolve, reject) => {
     await git.pull(['origin', BRANCH_NAME]);
   } catch(_) {}
 
+  console.log('Removing all files and folders other than docs');
+  const all = fs.readdirSync(process.cwd());
+  const gitIgnore = fs.readFileSync(path.resolve('.gitignore')).toString().split('\n');
+
+  for (let i = 0; i < all.length; i++) {
+    const f = all[i];
+
+    if (f === 'docs' || gitIgnore.includes(f) || '.git') {
+      continue;
+    }
+
+    fs.rmSync(f, {
+      recursive: true,
+      force: true,
+    });
+  }
+
   const outputDocs = path.join(process.cwd(), 'docs');
 
   fs.rmSync(outputDocs, {
