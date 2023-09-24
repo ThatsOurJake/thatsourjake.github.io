@@ -67,6 +67,8 @@ const runScript = (script) => new Promise((resolve, reject) => {
   console.log('Switched to "blog" branch');
   console.log('');
 
+  await git.pull();
+
   const outputDocs = path.join(process.cwd(), 'docs');
 
   fs.rmSync(outputDocs, {
