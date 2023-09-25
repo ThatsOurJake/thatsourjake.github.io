@@ -94,7 +94,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
       
       console.log(`  Generating page for ${mdFileName} | Read time: ${readTime} minute(s)`);
 
-      const { title = undefined, datePublished = undefined, lastEdited = undefined, favourite = false, hidden = false } = converter.getMetadata();
+      const { title = undefined, datePublished = undefined, lastEdited = undefined, favourite = false, hidden = false, enableComments = false, keywords = '' } = converter.getMetadata();
 
       if (!title) {
         console.warn(`  ⚠️  Article does not contain a title - Skipping`);
@@ -111,6 +111,8 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
         datePublished,
         lastEdited,
         readTime,
+        enableComments,
+        keywords,
       };
 
       const urlSlug = mdFileName.replace('.md', '');
@@ -181,6 +183,12 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
     console.log('Copying CNAME');
     fs.cpSync(path.join(cwd, 'CNAME'), path.join(docsDir, 'CNAME'));
   }
+
+  console.log('');
+  console.log('Copying Public folder');
+  fs.cpSync(path.join(cwd, 'public'), path.join(docsDir, 'public'), {
+    recursive: true,
+  });
 
   console.log('');
   console.log(`🎇 Build Complete`);

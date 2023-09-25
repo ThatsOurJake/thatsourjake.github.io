@@ -2,6 +2,8 @@
 title: DIY Jubeat Controller - Introduction
 datePublished: 2023-09-24T18:00:00.000Z
 favourite: true
+enableComments: true
+keywords: thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller
 ---
 
 A friend of mine invited me to an arcade here in the UK, I'd never been before so I wasn't sure what to expect, the arcades I'd been too in the past were ones on situated by the seaside with crane games and slot machines but this arcade was different, one entry fee and a bunch of different arcade games to play for "free" once the entry price had been paid. The arcade was set out in three floors, first floor: rhythm, driving, shooter cabinets; second floor: old school cabinets and third floor pc and VR.

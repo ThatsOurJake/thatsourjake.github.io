@@ -1,0 +1,17 @@
+<div class="commentbox"></div>
+<script>commentBox('5721254707331072-proj')</script>
+<script>
+  const element = document.querySelector('.commentbox iframe');
+
+  if (element) {
+    const observer = new MutationObserver((mutations) => {
+      const height = element.getAttribute('height');
+      element.parentElement.style.height = height;
+    });
+
+    observer.observe(element, {
+      attributes: true,
+      attributeFilter: ['height']
+    });
+  }
+</script>

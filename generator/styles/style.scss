@@ -83,3 +83,11 @@ p, li, h1, h2, h3, h4, h5, h6, a, bdt {
 .underline-hover:hover {
   text-decoration: underline;
 }
+
+.commentbox {
+  height: 0;
+
+  iframe {
+    height: 100%;
+  }
+}
