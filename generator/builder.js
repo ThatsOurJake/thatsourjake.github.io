@@ -80,6 +80,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
         metadata: true,
         headerLevelStart: 2,
         parseImgDimensions: true,
+        tables: true,
       });
 
       const mdFileName = markdownFiles[j];

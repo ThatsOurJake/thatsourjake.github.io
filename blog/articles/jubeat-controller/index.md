@@ -2,7 +2,6 @@
 title: DIY Jubeat Controller - Introduction
 datePublished: 2023-09-24T18:00:00.000Z
 favourite: true
-enableComments: true
 keywords: thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller
 ---
 
@@ -13,13 +12,13 @@ It was overwhelming at first, besides the bottom floor cabinets were mostly japa
 This blog series will document the process I went through of building my own Jubeat controller, this is not a tutorial but could be used as inspiration if you want to build your own. I will also not be mentioning anything around the software of Jubeat just the cabinet I built. For the purposes of this article I used software that emulates Jubeat and a better blog post on that can be found [here](https://davidobot.net/2020/05/03/jubeat-pc).
 
 ### The series breakdown:
-- [Introduction](#) (You are here)
+- <ins>Introduction</ins>
 - [Initial Research](./initial-research)
 - [Costings](./costings)
 - [Build process](./build-process)
 - [Footnotes](./footnotes)
 
 ### TLDR
-Here is the look of the final cabinet, it can use future improvements like a coat of paint but it's working and that is all that matters
+Here is the look of the final cabinet, it can use future improvements like a coat of paint but it's working and that is all that matters.
 
 ![Jubeat DIY Controller](./final.webp =25%x*)
