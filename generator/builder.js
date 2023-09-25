@@ -142,11 +142,13 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
     }
 
     // copy all assets other than md
-    const assets = fs.readdirSync(dirPath).filter(p => !p.endsWith('.md') && fs.lstatSync(path.join(dirPath,  p)).isFile());
+    const assets = fs.readdirSync(dirPath).filter(p => !p.endsWith('.md'));
 
     for (let j = 0; j < assets.length; j++) {
       const asset = assets[j];
-      fs.copyFileSync(path.join(dirPath, asset), path.join(outputDir, asset));
+      fs.cpSync(path.join(dirPath, asset), path.join(outputDir, asset), {
+        recursive: true,
+      });
     }
   }
 
