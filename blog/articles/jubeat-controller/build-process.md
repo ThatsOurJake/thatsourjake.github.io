@@ -7,9 +7,10 @@ keywords: thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,yoube
 
 The build process took around 4 weeks, this wasn't constant working but a few hours each night after work and a few weekends. I had a few nights and a weekend off due to burn out but 4 weeks was the rough completion time.
 
-This post will be split into 2 separate sections:
+This post will be split into 3 sections:
 - [Building of the base unit](#buildingofthebaseunit)
 - [Building of the controller](#buildingofthecontroller)
+- [Cabinet Assembly](#assembly)
 
 Building the base will include the process of designing and planning out the base of the arcade machine include the PC to run the software. Building the controller will be how I designed the top panel that would control the game.
 
@@ -45,6 +46,33 @@ Some of these parts I had lying around and parts like the motherboard and RAM I 
 ![Final image of base put together](./assets/base-2.webp =25%x*)
 
 ### Building of the controller
+The controller is the most important part of this project, this is the piece of the puzzle that allows me to play the game. After my research I knew I was creating a input device like a keyboard for this I bought an Ardiuno leonardo which can emulate HID keyboard. I started by drawing once again a sketch on paper:
+
+![Drawing of top panel](./assets/top-panel-design.webp =25%x*)
+
+_Note don't follow these measurements as some of them ended up being wrong!_
+
+Once I had a rough mock-up I once again used [FreeCAD](https://www.freecad.org/) to create a technical drawing which I then sent to a company to be laser cut out of acrylic as I would have not been able to had cut this out by hand. I then also designed the button mechanism, I wanted four buttons that would trigger as one input if any of them had been pressed then on-top of this bed of buttons would be an acrylic button.
+
+One problem, how was I going to wire these buttons with minimal electronic experience? I bought an small electronic kit and just experimented with some help from online:
+![Breadboard of electronics for 4 buttons turning on one LED](./assets/breadboard.webp =25%x*)
+
+<!-- Insert Gallery Here -->
+_Coming soon_
+
+_Gallery of images during the build process of the controller_
+
+### Assembly
+Once the two parts were built it was time to put both the base and controller together.
+
+<!-- Gallery of assembly -->
+_Coming soon_
+
+_Gallery of images showing the assembly of the cabinet_
+
+I attached the top and bottom together using long threaded bolts, this allows me to disconnect the controller "easily" if needed. After this I tested the cabinet out and some of the buttons aren't the best and sometimes get stuck but it works well enough for a first version (See footnotes on what version 2 would look like), I am really happy with how it turned out, as I keep mentioning I had very basic skills in many areas before starting this project and this project has enhanced those skills and I have a few more ideas in my head on future projects which I will definitely do write ups on.
+
+![Final cabinet assembled](./assets/final.webp =25%x*)
 
 ### The series:
 - [Introduction](.)
