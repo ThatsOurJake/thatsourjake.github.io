@@ -15,6 +15,9 @@
         <div class="mt-2">
           <%- html %>
         </div>
+        <% if (metadata.enableComments) { %>
+          <%- include('../components/comments') %>
+        <% } %>
       </article>
     </div>
     <%- include('../components/cookie') %>

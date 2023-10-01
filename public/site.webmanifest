@@ -1,0 +1,32 @@
+{
+    "theme_color": "#fff",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "thatsourjake.blog",
+    "short_name": "thatsourjake.blog",
+    "description": "A place that documents what projects I'm working on and their outcomes",
+    "icons": [
+        {
+            "src": "/public/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -25,7 +25,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
   const cwd = process.cwd();
   const buildDir = path.join(cwd, 'build');
   const blogDir = path.join(cwd, 'blog');
-  /** @type {{ title: string, datePublished: number, url: string, readingTime: { value: number }, favourite: boolean }[]} */
+  /** @type {{ title: string, datePublished: number, url: string, readingTime: { value: number }, favourite: boolean, hidden: boolean }[]} */
   const blogPosts = [];
 
   const docsDir = path.join(buildDir, 'docs');
@@ -80,6 +80,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
         metadata: true,
         headerLevelStart: 2,
         parseImgDimensions: true,
+        tables: true,
       });
 
       const mdFileName = markdownFiles[j];
@@ -94,7 +95,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
       
       console.log(`  Generating page for ${mdFileName} | Read time: ${readTime} minute(s)`);
 
-      const { title = undefined, datePublished = undefined, lastEdited = undefined, favourite = false } = converter.getMetadata();
+      const { title = undefined, datePublished = undefined, lastEdited = undefined, favourite = false, hidden = false, enableComments = false, keywords = '' } = converter.getMetadata();
 
       if (!title) {
         console.warn(`  ⚠️  Article does not contain a title - Skipping`);
@@ -111,6 +112,8 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
         datePublished,
         lastEdited,
         readTime,
+        enableComments,
+        keywords,
       };
 
       const urlSlug = mdFileName.replace('.md', '');
@@ -124,6 +127,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
           value: readTime,
         },
         favourite,
+        hidden,
       });
 
       // generate article from ejs
@@ -138,18 +142,21 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
     }
 
     // copy all assets other than md
-    const assets = fs.readdirSync(dirPath).filter(p => !p.endsWith('.md') && fs.lstatSync(path.join(dirPath,  p)).isFile());
+    const assets = fs.readdirSync(dirPath).filter(p => !p.endsWith('.md'));
 
     for (let j = 0; j < assets.length; j++) {
       const asset = assets[j];
-      fs.copyFileSync(path.join(dirPath, asset), path.join(outputDir, asset));
+      fs.cpSync(path.join(dirPath, asset), path.join(outputDir, asset), {
+        recursive: true,
+      });
     }
   }
 
   // generate homepage
+  const nonHiddenPosts = blogPosts.filter(x => !x.hidden).sort((a, b) => b.datePublished - a.datePublished);
   const homepage = await renderPage('home.ejs', { title: 'Home' }, {
-    blogPosts: blogPosts.sort((a, b) => b.datePublished - a.datePublished).slice(0, 3),
-    favouritePosts: blogPosts.filter(x => x.favourite).sort((a, b) => b.datePublished - a.datePublished),
+    blogPosts: nonHiddenPosts.slice(0, 3),
+    favouritePosts: nonHiddenPosts.filter(x => x.favourite).sort((a, b) => b.datePublished - a.datePublished),
   });
   fs.writeFileSync(path.join(docsDir, 'index.html'), homepage);
   console.log(`✨ Homepage Generated`);
@@ -160,7 +167,7 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
   console.log(`✨ Privacy Policy Generated`);
 
   // generate articles page
-  const articlesPage = await renderPage('articles.ejs', { title: 'All Articles' }, { blogPosts });
+  const articlesPage = await renderPage('articles.ejs', { title: 'All Articles' }, { blogPosts: nonHiddenPosts });
   fs.writeFileSync(path.join(docsDir, 'articles', 'index.html'), articlesPage);
   console.log(`✨ Articles page Generated`);
 
@@ -179,6 +186,12 @@ const renderPage = (template, metadata, extraParams = {}) => new Promise((resolv
     console.log('Copying CNAME');
     fs.cpSync(path.join(cwd, 'CNAME'), path.join(docsDir, 'CNAME'));
   }
+
+  console.log('');
+  console.log('Copying Public folder');
+  fs.cpSync(path.join(cwd, 'public'), path.join(docsDir, 'public'), {
+    recursive: true,
+  });
 
   console.log('');
   console.log(`🎇 Build Complete`);
