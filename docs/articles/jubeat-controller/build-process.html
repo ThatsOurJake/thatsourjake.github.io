@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<title>DIY Jubeat Controller - Build Process | thatsourjake.blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="title" content="ThatsOurJake Blog">
+<meta name="description" content="A place that documents what projects I'm working on and their outcomes">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="15 days">
+<meta name="author" content="Jake King">
+
+
+  <meta name="keywords" content="thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller">
+
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="120x120" href="/public/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+<link rel="manifest" href="/public/site.webmanifest">
+<link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/public/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="thatsourjake.blog">
+<meta name="application-name" content="thatsourjake.blog">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/public/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/f1052e1b6f.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498603989438259" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <header class="px-6 py-4 bg-pink-200 u-flex u-justify-space-between">
+  <div id="logo">
+    <a href="/" class="text-black font-black">thatsourjake.blog</a>
+  </div>
+  <div class="u-flex-end">
+    <a class="text-black underline-hover" href="/">Home</a>
+    <a class="text-black underline-hover" href="/articles">Articles</a>
+  </div>
+</header>
+
+    <div class="u-center u-shadow-inset bg-white">
+      <article class="w-70p min-h-screen">
+        <p class="headline-4 mb-0">DIY Jubeat Controller - Build Process</p>
+        <p class="text-sm m-0">Date published: 25 September 2023 | Estimated Read Time: ~6 minute(s)</p>
+        
+        <div class="mt-2">
+          <p>The build process took around 4 weeks, this wasn't constant working but a few hours each night after work and a few weekends. I had a few nights and a weekend off due to burn out but 4 weeks was the rough completion time.</p>
+<p>This post will be split into 3 sections:</p>
+<ul>
+<li><a href="#buildingofthebaseunit">Building of the base unit</a></li>
+<li><a href="#buildingofthecontroller">Building of the controller</a></li>
+<li><a href="#assembly">Cabinet Assembly</a></li>
+</ul>
+<p>Building the base will include the process of designing and planning out the base of the arcade machine include the PC to run the software. Building the controller will be how I designed the top panel that would control the game.</p>
+<h4 id="buildingofthebaseunit">Building of the base unit</h4>
+<p>The main purpose of the base was to hold the main pc components, provide the viewing angle for the controller and most importantly hold the controller. I wanted the controller to be detachable so if I was to make a version 2 or do upgrades I could take it apart easily.</p>
+<p><img src="./assets/base-scaled.webp" alt="Initial drawing of the base" />
+The drawing of the base was simple, an angled box that would have a speaker on each side with the front of the box having the various buttons and speaker controls.</p>
+<p>Most of the base I could visualise how'd it look, however the measurements of the side panel I struggled with, for this I used <a href="https://www.freecad.org/">FreeCAD</a> to make a mock-up technical drawing. I then created some software to cut up the exported drawing into A4 sheets of paper which I printed and stitched together to create a template I later on used to cut the side panels.</p>
+<p><img src="./assets/base-1-scaled.webp" alt="The initial construction of the base, with clamps holding it together" />
+The initial base was held together with wood glue and screws, once the base was complete I could start to assemble the PC and other electronics inside of it. Jubeat being a rhythm game has music, so most importantly we were going to need speakers.</p>
+<p>I bought some Amazon choice speakers, however these were too long and needed disassembling to fit to my requirements. As mentioned I haven't really ever done electronics, all I had built in the past is a LED lamp and in the process of tearing these speakers apart I broke something, the left speaker wasn't working. It was to do with the headphone jack that can be used to re-route the audio from the speakers.</p>
+<p><img src="./assets/speaker-jumper.webp" alt="Speaker jumper cable" /></p>
+<p>I decided after a few hours of trying to solder and getting it to work it was best to scrap the headphone jack and I crudely wired a jumper cable in hopes it'd work and to my surprise it did, I then made some more crude decisions and managed to somehow get 2 working speakers fitted inside the base unit.</p>
+<p>After the speakers I started to assemble the computer that would run the whole operation, I wanted a close to real Jubeat cabinet so I chose to use Windows 7 as my operating system. Windows 7 was discontinued in 2020 which made it quite difficult to get up and running, after a long phone call with the automated microsoft line and a few manual windows updates we were up and running and the base of the cabinet was complete and more importantly cat approved.</p>
+<p><img src="./assets/base-cat.webp" alt="Cat inside of cabinet base" /></p>
+<p>The final base ended up having extra supports, computer fans and a bit better cable management but overall not to different from the original drawing. The PC specs are:</p>
+<ul>
+<li>Windows 7</li>
+<li>i3 CPU</li>
+<li>16GB DDR3 RAM</li>
+<li>500gb SSD</li>
+<li>500W PSU
+Some of these parts I had lying around and parts like the motherboard and RAM I needed to order.</li>
+</ul>
+<p><img src="./assets/base-2.webp" alt="Final image of base put together" /></p>
+<h4 id="buildingofthecontroller">Building of the controller</h4>
+<p>The controller is the most important part of this project, this is the piece of the puzzle that allows me to play the game. After my research I knew I was creating a input device like a keyboard for this I bought an Ardiuno leonardo which can emulate HID keyboard. I started by drawing once again a sketch on paper:</p>
+<p><img src="./assets/top-panel-design.webp" alt="Drawing of top panel" /></p>
+<p><em>Note don't follow these measurements as some of them ended up being wrong!</em></p>
+<p>Once I had a rough mock-up I once again used <a href="https://www.freecad.org/">FreeCAD</a> to create a technical drawing which I then sent to a company to be laser cut out of acrylic as I would have not been able to had cut this out by hand. I then also designed the button mechanism, I wanted four buttons that would trigger as one input if any of them had been pressed then on-top of this bed of buttons would be an acrylic button.</p>
+<p>One problem, how was I going to wire these buttons with minimal electronic experience? I bought an small electronic kit and just experimented with some help from online:
+<img src="./assets/breadboard.webp" alt="Breadboard of electronics for 4 buttons turning on one LED" /></p>
+<iframe style="width: 75%; aspect-ratio: 16 / 9;" src="https://apps.jakeking.co.uk/galleria/api/render/wdgMkMNqfA"></iframe>
+<p><em>Gallery of images during the build process of the controller will only show on desktop for now</em></p>
+<h4 id="assembly">Assembly</h4>
+<p>Once the two parts were built it was time to put both the base and controller together.</p>
+<iframe style="width: 75%; aspect-ratio: 16 / 9;" class="c-gallery" src="https://apps.jakeking.co.uk/galleria/api/render/LzJeUm5W30"></iframe>
+<p><em>Gallery of images showing the assembly of the cabinet will only show on desktop for now</em></p>
+<p>I attached the top and bottom together using long threaded bolts, this allows me to disconnect the controller "easily" if needed. After this I tested the cabinet out and some of the buttons aren't the best and sometimes get stuck but it works well enough for a first version (See footnotes on what version 2 would look like), I am really happy with how it turned out, as I keep mentioning I had very basic skills in many areas before starting this project and this project has enhanced those skills and I have a few more ideas in my head on future projects which I will definitely do write ups on.</p>
+<p><img src="./assets/final.webp" alt="Final cabinet assembled" /></p>
+<h4 id="theseries">The series:</h4>
+<ul>
+<li><a href=".">Introduction</a></li>
+<li><a href="./initial-research">Initial Research</a></li>
+<li><a href="./costings">Costings</a></li>
+<li><ins>Build process</ins></li>
+<li><a href="./footnotes">Footnotes</a></li>
+</ul>
+        </div>
+        
+      </article>
+    </div>
+    <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({"notice_banner_type":"simple","consent_type":"implied","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"thatsourjake.blog","website_privacy_policy_url":"https://thatsourjake.blog/privacy"});
+  });
+</script>
+
+<!-- Google Analytics -->
+<script>
+  if (window.location.host !== 'thatsourjake.blog') {
+    // Disable for none blog domains
+    window['ga-disable-G-SP1Y9VMEVB'] = true;
+  }
+</script>
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-SP1Y9VMEVB"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SP1Y9VMEVB');
+</script>
+<!-- end of Google Analytics-->
+<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+
+    <footer class="px-6 py-3 bg-pink-200 u-center">
+  <div class="w-100p w-30p-md u-text-center mb-2 mb-0-md">
+    <p class="m-0">Made with <span aria-label="love">❤️</span> using:</p>
+    <a href="https://www.cirrus-ui.com/" class="text-black p-0"><p class="m-0">Cirrus UI</p></a>
+    <a href="https://fontawesome.com/" class="text-black p-0"><p class="m-0">Font Awesome</p></a>
+    <p class="m-0">Free cookie consent management tool by <a href="https://www.termsfeed.com/" class="text-black p-0">TermsFeed</a></p>
+  </div>
+  <div class="w-100p w-30p-md u-text-center mb-2 mb-0-md">
+    <p class="m-0">You can <span aria-label="find">🔎</span> me at:</p>
+      <p class="m-0"><a href="https://github.com/thatsourjake" class="text-black"><i class="fa-brands fa-github"></i> GitHub</a></li></p>
+      <p class="m-0"><a href="https://www.instagram.com/thatsourjake" class="text-black"><i class="fa-brands fa-instagram"></i> Instagram</a></li></p>
+    </ul>
+  </div>
+  <div class="w-100p w-30p-md u-center u-flex-column">
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'H2H2ONY0E');kofiwidget2.draw();</script> 
+    <!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID parameter. Place it where appropriate, style it as needed. -->
+    <a href="#" id="open_preferences_center" class="text-black underline-hover">Update cookies preferences</a>
+    <a href="/privacy" class="p-0 text-black underline-hover">View Privacy Policy</a>
+  </div>
+</div>
+ 
+  </body>
+</html>

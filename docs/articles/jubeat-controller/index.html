@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-<title>How I wrote a blog | thatsourjake.blog</title>
+<title>DIY Jubeat Controller - Introduction | thatsourjake.blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <meta name="author" content="Jake King">
 
 
-  <meta name="keywords" content="thatsourjake,tech blog,blogging,programming,software development">
+  <meta name="keywords" content="thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller">
 
 
 <!-- Icons -->
@@ -52,38 +52,24 @@
 
     <div class="u-center u-shadow-inset bg-white">
       <article class="w-70p min-h-screen">
-        <p class="headline-4 mb-0">How I wrote a blog</p>
-        <p class="text-sm m-0">Date published: 05 September 2023 | Estimated Read Time: ~2 minute(s)</p>
+        <p class="headline-4 mb-0">DIY Jubeat Controller - Introduction</p>
+        <p class="text-sm m-0">Date published: 24 September 2023 | Estimated Read Time: ~2 minute(s)</p>
         
         <div class="mt-2">
-          <p>What better first main blog post than explaining how the site that hosts my blog was made. <strong>tldr:</strong> <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a>.</p>
-<p>First i'll preface this with some caveats</p>
+          <p>A friend of mine invited me to an arcade here in the UK, I'd never been before so I wasn't sure what to expect, the arcades I'd been too in the past were ones on situated by the seaside with crane games and slot machines but this arcade was different, one entry fee and a bunch of different arcade games to play for "free" once the entry price had been paid. The arcade was set out in three floors, first floor: rhythm, driving, shooter cabinets; second floor: old school cabinets and third floor pc and VR.</p>
+<p>It was overwhelming at first, besides the bottom floor cabinets were mostly japanese origin so I couldn't read any of the text on screen and had to fumble may way through however there was one cabinet that caught my eye <a href="https://en.wikipedia.org/wiki/Jubeat">Jubeat</a>. This cabinet is a 4x4 grid of buttons that have to be pressed in time with the music to gain a score, the better the timing the higher the score. This hit a dopamine in my brain as it reminded me of old launchpad <a href="https://www.youtube.com/results?search_query=launchpad+cover">videos</a> i'd watch when I was younger. I wanted one!</p>
+<p>This blog series will document the process I went through of building my own Jubeat controller, this is not a tutorial but could be used as inspiration if you want to build your own. I will also not be mentioning anything around the software of Jubeat just the cabinet I built. For the purposes of this article I used software that emulates Jubeat and a better blog post on that can be found <a href="https://davidobot.net/2020/05/03/jubeat-pc">here</a>.</p>
+<h4 id="theseriesbreakdown">The series breakdown:</h4>
 <ul>
-<li>This framework has been made specifically to my workflow</li>
-<li>It's a major WIP and will evolve over time</li>
-<li>I didn't want to use a prebuilt framework like Gatsby as I wanted this site to feel more personal</li>
+<li><ins>Introduction</ins></li>
+<li><a href="./initial-research">Initial Research</a></li>
+<li><a href="./costings">Costings</a></li>
+<li><a href="./build-process">Build process</a></li>
+<li><a href="./footnotes">Footnotes</a></li>
 </ul>
-<p>Now that's out the way the tech stack, it's a simple tech stack for hosting - <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain routed via cloudflare. As for the what I call the <code>builder</code>, this script handles the generation of the site, it's written in Javascript and uses the <a href="https://ejs.co/">EJS</a> templating engine. The script will a set of basic steps</p>
-<ul>
-<li>Find all markdown files within a specified directory</li>
-<li>Parse these using <a href="https://www.npmjs.com/package/showdown">showdown</a></li>
-<li>Calculate Reading time</li>
-<li>Generate full html pages using EJS and prebuilt templates</li>
-<li>Save html files to output directory</li>
-<li>Copy any other assets like images</li>
-<li>Generate the homepage, articles page, privacy policy</li>
-<li>Compile SASS</li>
-<li>Done!</li>
-</ul>
-<p>There are some other missing steps like validation but that is the general inner workings. The deployment script is still very much a work in progress and has already caused many issues, but the idea behind it:</p>
-<ul>
-<li>Build the site</li>
-<li>Checkout to the <code>blog</code> branch</li>
-<li>Commit the docs</li>
-<li>Push</li>
-<li>GitHub actions does the rest</li>
-</ul>
-<p>Some other honourable mentions are I'm using <a href="https://www.npmjs.com/package/pm2">PM2</a>, <a href="https://www.npmjs.com/package/nodemon">nodemon</a> and <a href="https://www.npmjs.com/package/http-server">http-server</a> to make it easier to locally write and view the articles. If you're curious then the <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a> is open on my GitHub.</p>
+<h4 id="tldr">TLDR</h4>
+<p>Here is the look of the final cabinet, it can use future improvements like a coat of paint but it's working and that is all that matters.</p>
+<p><img src="./assets/final.webp" alt="Jubeat DIY Controller" /></p>
         </div>
         
       </article>

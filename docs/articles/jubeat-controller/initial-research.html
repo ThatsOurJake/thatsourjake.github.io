@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-<title>How I wrote a blog | thatsourjake.blog</title>
+<title>DIY Jubeat Controller - Initial Research | thatsourjake.blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <meta name="author" content="Jake King">
 
 
-  <meta name="keywords" content="thatsourjake,tech blog,blogging,programming,software development">
+  <meta name="keywords" content="thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller">
 
 
 <!-- Icons -->
@@ -52,38 +52,30 @@
 
     <div class="u-center u-shadow-inset bg-white">
       <article class="w-70p min-h-screen">
-        <p class="headline-4 mb-0">How I wrote a blog</p>
-        <p class="text-sm m-0">Date published: 05 September 2023 | Estimated Read Time: ~2 minute(s)</p>
+        <p class="headline-4 mb-0">DIY Jubeat Controller - Initial Research</p>
+        <p class="text-sm m-0">Date published: 24 September 2023 | Estimated Read Time: ~3 minute(s)</p>
         
         <div class="mt-2">
-          <p>What better first main blog post than explaining how the site that hosts my blog was made. <strong>tldr:</strong> <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a>.</p>
-<p>First i'll preface this with some caveats</p>
+          <p>When starting this project I didn't expect to end up down the rabbit hole I did, I was aware of companies who made arcade controllers for Japanese arcade games and I was naive to think I could just buy a cabinet. Both of these are technically right but for jubeat it's a little harder, there was a controller by a company called <a href="https://www.dj-dao.com/">DJ Dao</a> who I was familiar with their work but not by direct name, however this controller has been long discontinued and I couldn't find any for sale online. I then looked at buying a cabinet, most cabinets are imported into the US and these looked to set me back over a $1000 which at the beginning of this project I wasn't prepared for. I also didn't have room for a full cabinet, didn't want to take the chance it'd survive the trip and most importantly the price still being over $1000.</p>
+<p>So the next logical step for me was to see if I could find a way of building my own controller and using an <em>emulator</em> to get a close experience.</p>
+<p>I found a few good sources within my research <em>which I've also archived in the wayback if the below links don't work</em></p>
 <ul>
-<li>This framework has been made specifically to my workflow</li>
-<li>It's a major WIP and will evolve over time</li>
-<li>I didn't want to use a prebuilt framework like Gatsby as I wanted this site to feel more personal</li>
+<li><a href="https://kokoa-love.blogspot.com/2016/07/diy-11-jubeat.html">kokoa love</a> | Language: 🇯🇵</li>
+<li><a href="https://blog.flipflop-jp.com/archives/2711/post-2711/">FlipFlop JP</a> | Language: 🇯🇵</li>
+<li><a href="https://burogu.makotoworkshop.org/index.php?post/2021/04/04/Jubeat">Makoto Workshop</a> | Language: 🇫🇷</li>
+<li><a href="https://www.reddit.com/r/bemani/comments/filgjc/comment/fkicb05/?utm_source=share&utm_medium=web2x&context=3&rdt=37992">Reddit Discussion on Screens</a> | Language: 🇬🇧</li>
 </ul>
-<p>Now that's out the way the tech stack, it's a simple tech stack for hosting - <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain routed via cloudflare. As for the what I call the <code>builder</code>, this script handles the generation of the site, it's written in Javascript and uses the <a href="https://ejs.co/">EJS</a> templating engine. The script will a set of basic steps</p>
+<p>The above links are to various sources I used within my research, these were people either making their own Jubeat controllers and documenting their progress (like I am) or breakdowns of the DJ Dao controller which inspired my final design. I also created a mood board of various different Jubeat controller designs that later inspired my final product.</p>
+<p>Next the software, again I won't go into this as it's a very grey area but again <a href="https://davidobot.net/2020/05/03/jubeat-pc">this post</a> was very helpful in searching, I used duckduckgo as the results yielded better than Google due to my region being UK and a lot of these articles are written in Japanese.</p>
+<p>Now there was one final piece I had to workout, how do I learn electronics… That's right, I have minimal experience with electronics and zero experience with manufacturing. How I overcame these can be found in the <a href="./build-process">Build process</a> article.</p>
+<h4 id="theseries">The series:</h4>
 <ul>
-<li>Find all markdown files within a specified directory</li>
-<li>Parse these using <a href="https://www.npmjs.com/package/showdown">showdown</a></li>
-<li>Calculate Reading time</li>
-<li>Generate full html pages using EJS and prebuilt templates</li>
-<li>Save html files to output directory</li>
-<li>Copy any other assets like images</li>
-<li>Generate the homepage, articles page, privacy policy</li>
-<li>Compile SASS</li>
-<li>Done!</li>
+<li><a href=".">Introduction</a></li>
+<li><ins>Initial Research</ins></li>
+<li><a href="./costings">Costings</a></li>
+<li><a href="./build-process">Build process</a></li>
+<li><a href="./footnotes">Footnotes</a></li>
 </ul>
-<p>There are some other missing steps like validation but that is the general inner workings. The deployment script is still very much a work in progress and has already caused many issues, but the idea behind it:</p>
-<ul>
-<li>Build the site</li>
-<li>Checkout to the <code>blog</code> branch</li>
-<li>Commit the docs</li>
-<li>Push</li>
-<li>GitHub actions does the rest</li>
-</ul>
-<p>Some other honourable mentions are I'm using <a href="https://www.npmjs.com/package/pm2">PM2</a>, <a href="https://www.npmjs.com/package/nodemon">nodemon</a> and <a href="https://www.npmjs.com/package/http-server">http-server</a> to make it easier to locally write and view the articles. If you're curious then the <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a> is open on my GitHub.</p>
         </div>
         
       </article>

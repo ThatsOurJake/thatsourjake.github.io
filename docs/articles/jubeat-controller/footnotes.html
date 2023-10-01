@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-<title>How I wrote a blog | thatsourjake.blog</title>
+<title>DIY Jubeat Controller - Footnotes | thatsourjake.blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <meta name="author" content="Jake King">
 
 
-  <meta name="keywords" content="thatsourjake,tech blog,blogging,programming,software development">
+  <meta name="keywords" content="thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller">
 
 
 <!-- Icons -->
@@ -52,39 +52,51 @@
 
     <div class="u-center u-shadow-inset bg-white">
       <article class="w-70p min-h-screen">
-        <p class="headline-4 mb-0">How I wrote a blog</p>
-        <p class="text-sm m-0">Date published: 05 September 2023 | Estimated Read Time: ~2 minute(s)</p>
+        <p class="headline-4 mb-0">DIY Jubeat Controller - Footnotes</p>
+        <p class="text-sm m-0">Date published: 26 September 2023 | Estimated Read Time: ~2 minute(s)</p>
         
         <div class="mt-2">
-          <p>What better first main blog post than explaining how the site that hosts my blog was made. <strong>tldr:</strong> <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a>.</p>
-<p>First i'll preface this with some caveats</p>
+          <p>If you have gotten this far in the articles then thanks, this project was a really fun one and I have been playing the cabinet a fair bit since building it. My friends have also really been enjoying it and hopefully inspired some other people to look up this amazing game called Jubeat. This page will contain some final notes on what a version 2 would be and mistakes I made.</p>
+<h4 id="mistakes">Mistakes</h4>
 <ul>
-<li>This framework has been made specifically to my workflow</li>
-<li>It's a major WIP and will evolve over time</li>
-<li>I didn't want to use a prebuilt framework like Gatsby as I wanted this site to feel more personal</li>
+<li>I went through 2 soldering irons as my soldering is awful, these skills are slowly improving</li>
+<li>Measuring, some measurements were off, I managed to recover but it's why creating a 3d model to scale is important</li>
+<li>Burns, I kept burning myself on hot glue and the soldering iron. BE CAREFUL!</li>
+<li>Underestimating how long the project would take, burn out nearly killed this project.</li>
 </ul>
-<p>Now that's out the way the tech stack, it's a simple tech stack for hosting - <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain routed via cloudflare. As for the what I call the <code>builder</code>, this script handles the generation of the site, it's written in Javascript and uses the <a href="https://ejs.co/">EJS</a> templating engine. The script will a set of basic steps</p>
+<h4 id="version2">Version 2</h4>
+<p>If I was to make a version 2 I would definitely change the way the buttons are wired up, I don't like how many wires there were and I've seen a Github project that used PCBs for two of the buttons so if I was todo a version 2 I would learn how to make PCBs to give the top controller a slimmer look.</p>
+<p>Off the back of slimmer profile, I would look at getting the middle button panel 3d printed, the buttons are held with wood stubs and that is leading to them getting stuck so I'd look to 3d print chassis's that would hold these buttons and acrylic button plates in place.</p>
+<p>Don't use windows 7 - yes its more authentic to the real machine but a right pain to get all the drivers installed now it's been discontinued so v2 could look at a window 10 or future OS build.</p>
+<p>Thanks again for reading, this article has comments turned on if there are any questions or discussions points.</p>
+<h4 id="theseries">The series:</h4>
 <ul>
-<li>Find all markdown files within a specified directory</li>
-<li>Parse these using <a href="https://www.npmjs.com/package/showdown">showdown</a></li>
-<li>Calculate Reading time</li>
-<li>Generate full html pages using EJS and prebuilt templates</li>
-<li>Save html files to output directory</li>
-<li>Copy any other assets like images</li>
-<li>Generate the homepage, articles page, privacy policy</li>
-<li>Compile SASS</li>
-<li>Done!</li>
+<li><a href=".">Introduction</a></li>
+<li><a href="./initial-research">Initial Research</a></li>
+<li><a href="./costings">Costings</a></li>
+<li><a href="./build-process">Build Process</a></li>
+<li><ins>Footnotes</ins></li>
 </ul>
-<p>There are some other missing steps like validation but that is the general inner workings. The deployment script is still very much a work in progress and has already caused many issues, but the idea behind it:</p>
-<ul>
-<li>Build the site</li>
-<li>Checkout to the <code>blog</code> branch</li>
-<li>Commit the docs</li>
-<li>Push</li>
-<li>GitHub actions does the rest</li>
-</ul>
-<p>Some other honourable mentions are I'm using <a href="https://www.npmjs.com/package/pm2">PM2</a>, <a href="https://www.npmjs.com/package/nodemon">nodemon</a> and <a href="https://www.npmjs.com/package/http-server">http-server</a> to make it easier to locally write and view the articles. If you're curious then the <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a> is open on my GitHub.</p>
         </div>
+        
+          <div class="commentbox"></div>
+<script>commentBox('5721254707331072-proj')</script>
+<script>
+  const element = document.querySelector('.commentbox iframe');
+
+  if (element) {
+    const observer = new MutationObserver((mutations) => {
+      const height = element.getAttribute('height');
+      element.parentElement.style.height = height;
+    });
+
+    observer.observe(element, {
+      attributes: true,
+      attributeFilter: ['height']
+    });
+  }
+</script>
+
         
       </article>
     </div>

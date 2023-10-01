@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-<title>How I wrote a blog | thatsourjake.blog</title>
+<title>DIY Jubeat Controller - Costings | thatsourjake.blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link preload href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <meta name="author" content="Jake King">
 
 
-  <meta name="keywords" content="thatsourjake,tech blog,blogging,programming,software development">
+  <meta name="keywords" content="thatsourjake,blogging,jubeat,jubeat custom controller,jubeat diy,youbeat controller">
 
 
 <!-- Icons -->
@@ -52,38 +52,53 @@
 
     <div class="u-center u-shadow-inset bg-white">
       <article class="w-70p min-h-screen">
-        <p class="headline-4 mb-0">How I wrote a blog</p>
-        <p class="text-sm m-0">Date published: 05 September 2023 | Estimated Read Time: ~2 minute(s)</p>
+        <p class="headline-4 mb-0">DIY Jubeat Controller - Costings</p>
+        <p class="text-sm m-0">Date published: 25 September 2023 | Estimated Read Time: ~2 minute(s)</p>
         
         <div class="mt-2">
-          <p>What better first main blog post than explaining how the site that hosts my blog was made. <strong>tldr:</strong> <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a>.</p>
-<p>First i'll preface this with some caveats</p>
+          <p>The costings, as mentioned a brand new jubeat cabinet was around $1000 which is around £820. Below I will list all the prices in both GBP and USD. I will also break it down into different sections for both materials and tools. At the beginning of this project I had zero tools and all them had to be bought throughout the project.</p>
+<table>
+<thead>
+<tr>
+<th>Cost of</th>
+<th>GBP</th>
+<th>USD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tools</td>
+<td>£490</td>
+<td>$599</td>
+</tr>
+<tr>
+<td>Materials</td>
+<td>£350</td>
+<td>$428</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>£840</td>
+<td>$1027</td>
+</tr>
+</tbody>
+</table>
+<p>Time taken was around 4 weeks.</p>
+<p>As we can see the pricing despite being approximations do add up to the same price as buying a brand new arcade machine, however if I had the tools already it would have been cheaper by more than half the price of a new machine. I will also say the learning time I got from this is not measurable and hopefully the skills learnt in this project will influence future projects.</p>
+<h4 id="theseries">The series:</h4>
 <ul>
-<li>This framework has been made specifically to my workflow</li>
-<li>It's a major WIP and will evolve over time</li>
-<li>I didn't want to use a prebuilt framework like Gatsby as I wanted this site to feel more personal</li>
+<li><a href=".">Introduction</a></li>
+<li><a href="./initial-research">Initial Research</a></li>
+<li><ins>Costings</ins></li>
+<li><a href="./build-process">Build process</a></li>
+<li><a href="./footnotes">Footnotes</a></li>
 </ul>
-<p>Now that's out the way the tech stack, it's a simple tech stack for hosting - <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain routed via cloudflare. As for the what I call the <code>builder</code>, this script handles the generation of the site, it's written in Javascript and uses the <a href="https://ejs.co/">EJS</a> templating engine. The script will a set of basic steps</p>
-<ul>
-<li>Find all markdown files within a specified directory</li>
-<li>Parse these using <a href="https://www.npmjs.com/package/showdown">showdown</a></li>
-<li>Calculate Reading time</li>
-<li>Generate full html pages using EJS and prebuilt templates</li>
-<li>Save html files to output directory</li>
-<li>Copy any other assets like images</li>
-<li>Generate the homepage, articles page, privacy policy</li>
-<li>Compile SASS</li>
-<li>Done!</li>
-</ul>
-<p>There are some other missing steps like validation but that is the general inner workings. The deployment script is still very much a work in progress and has already caused many issues, but the idea behind it:</p>
-<ul>
-<li>Build the site</li>
-<li>Checkout to the <code>blog</code> branch</li>
-<li>Commit the docs</li>
-<li>Push</li>
-<li>GitHub actions does the rest</li>
-</ul>
-<p>Some other honourable mentions are I'm using <a href="https://www.npmjs.com/package/pm2">PM2</a>, <a href="https://www.npmjs.com/package/nodemon">nodemon</a> and <a href="https://www.npmjs.com/package/http-server">http-server</a> to make it easier to locally write and view the articles. If you're curious then the <a href="https://github.com/ThatsOurJake/thatsourjake.github.io">Source Code</a> is open on my GitHub.</p>
+<p>** Prices were correct at time of publishing</p>
         </div>
         
       </article>
