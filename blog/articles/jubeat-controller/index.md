@@ -21,4 +21,4 @@ This blog series will document the process I went through of building my own Jub
 ### TLDR
 Here is the look of the final cabinet, it can use future improvements like a coat of paint but it's working and that is all that matters.
 
-![Jubeat DIY Controller](./assets/final.webp =25%x*)
+![Jubeat DIY Controller](./assets/final.webp)

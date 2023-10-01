@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "cirrus-ui/src/cirrus-all" as *;
 
 @mixin loop-mq() {
@@ -95,4 +96,21 @@ p, li, h1, h2, h3, h4, h5, h6, a, bdt {
 article table {
   @extend .table;
   @extend .bordered;
+}
+
+article img {
+  width: 50%;
+
+  @media (min-width: map.get($default-breakpoints, $sm)) {
+    width: 25%;
+  }
+}
+
+// TODO show galleries on mobile
+article iframe {
+  display: none;
+
+  @media (min-width: map.get($default-breakpoints, $sm)) {
+    display: block;
+  }
 }
